@@ -1,0 +1,43 @@
+1.Memory Locations: 
+2.Memory Access
+3.Data Races
+4.Sequential Consistency
+5.Synchronization Mechanisms
+6.Memory Ordering
+7.Memory Barriers
+
+
+
+1.Data Races
+2.Atomicity
+3.Ordering
+4.Visibility
+
+ ////////////////////////
+ There are six memory orders defined in the C++11 standard, which are:
+
+ 1. memory_order_relaxed:
+ The weakest memory order. It allows all reordering of memory operations and does not guarantee any synchronization between threads.
+ This means that a memory operation with this order can be executed out of order with respect to other memory operations from different threads. However,
+ it still provides atomicity guarantees for basic operations like loads and stores.
+
+2. memory_order_consume:
+This order is weaker than memory_order_acquire but stronger than memory_order_relaxed. It guarantees that all dependent reads are ordered with respect to the
+release operations on the same atomic variable in other threads. This means that a thread can read a value from an atomic variable with this order and use it
+to synchronize with another thread's release operations on the same variable.
+
+3. memory_order_acquire:
+This order guarantees that all previous memory operations in the current thread are ordered before the acquire operation. It also synchronizes with the release
+operations on the same atomic variable in other threads, ensuring that all updates made by those threads are visible to the current thread.
+
+4. memory_order_release:
+This order guarantees that all subsequent memory operations in the current thread are ordered after the release operation. It also synchronizes with the acquire
+operations on the same atomic variable in other threads, ensuring that all updates made by the current thread are visible to those threads.
+
+5.memory_order_acq_rel:
+This order combines the acquire and release operations, ensuring that all previous memory operations in the current thread are ordered before the acquire operation,
+and all subsequent memory operations are ordered after the release operation. It also synchronizes with both the acquire and release operations on the same atomic variable in other threads.
+
+6.memory_order_seq_cst:
+This is the strongest memory order and provides total ordering of memory operations across all threads. It ensures that all memory operations
+are executed in a globally consistent order, regardless of the order in which they were executed by individual threads.

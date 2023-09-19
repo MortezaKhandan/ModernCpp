@@ -1,0 +1,19 @@
+
+there are several reasons why you should prefer using std::make_shared and std::make_unique over using new to create objects and manage memory in C++.
+
+1 : Improved performance: When you use std::make_shared to create a std::shared_ptr, the reference count and the object are allocated in a single memory block.
+This can improve performance by reducing the number of memory allocations and deallocations needed, and by improving memory locality. Similarly, when you use std::make_unique
+to create a std::unique_ptr, the object is created in a single memory block, which can also improve performance.
+
+2 : Better memory management: When you create an object with new, you are responsible for managing the memory allocated for the object. This includes deleting the object when
+it is no longer needed, which can be error-prone and can lead to memory leaks if not done correctly. When you use std::make_shared or std::make_unique, the memory allocated
+for the object is automatically managed by the smart pointer, so you don't have to worry about deleting the object manually.
+
+3 : Exception safety: When you create an object with new and then use it to initialize a smart pointer, there is a possibility of a memory leak if an exception is thrown
+during the construction of the object. This can happen if the constructor of the object throws an exception after the memory has been allocated but before the smart pointer
+is initialized. When you use std::make_shared or std::make_unique, the object and the smart pointer are created together in a single step, which can help to prevent memory
+leaks in case of an exception.
+
+4: Type inference: When you use std::make_shared or std::make_unique, the type of the object is inferred automatically from the arguments passed to the function.
+This can make the code cleaner and more concise, as you don't have to repeat the type of the object twice (once for the new operator and once for the smart pointer).
+
